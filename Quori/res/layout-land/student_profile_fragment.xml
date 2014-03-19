@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/sp_nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/quickContactBadge1"
+        android:layout_marginLeft="18dp"
+        android:text="@string/stud_Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp" />
+
+    <QuickContactBadge
+        android:id="@+id/quickContactBadge1"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="53dp" />
+
+    <TextView
+        android:id="@+id/currAbsLayoutTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sp_nameTextView"
+        android:layout_below="@+id/sp_nameTextView"
+        android:layout_marginTop="60dp"
+        android:text="@string/curr_Abs_label"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/currentAbsencesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sp_nameTextView"
+        android:layout_below="@+id/currAbsLayoutTextView"
+        android:text="@string/curr_abs_val"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/LastAttendedLabelTextView"
+        android:layout_below="@+id/currentAbsencesTextView"
+        android:layout_marginTop="79dp"
+        android:text="@string/LastAttendedValue"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/LastAttendedLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/currentAbsencesTextView"
+        android:layout_below="@+id/currentAbsencesTextView"
+        android:layout_marginTop="26dp"
+        android:text="@string/lastAttendedLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp" />
+
+</RelativeLayout>
