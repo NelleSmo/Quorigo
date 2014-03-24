@@ -23,10 +23,36 @@ public class MainSectionFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.check_attendance_layout,
+		View rootView = inflater.inflate(R.layout.fragment_main,
 				container, false);
 		
 
 		return rootView;
 	}
+	/**
+	 * A dummy fragment representing a section of the app, but that simply
+	 * displays dummy text.
+	 */
+	public static class RegisterStudentFragment extends Fragment {
+		/**
+		 * The fragment argument representing the section number for this
+		 * fragment.
+		 */
+		public static final String ARG_SECTION_NUMBER = "section_number";
+
+		public RegisterStudentFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.check_attendance_layout,
+					container, false);
+			
+
+			return rootView;
+		}
+	}
+	
+	
 }
