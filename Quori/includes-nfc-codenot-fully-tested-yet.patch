@@ -1,0 +1,912 @@
+From f0e70b6e3d36fa4b3d01ed2aad325f80d6d409ad Wed, 26 Mar 2014 22:14:06 -0400
+From: Charnelle <nellesmo@gmail.com>
+Date: Wed, 26 Mar 2014 21:22:06 -0400
+Subject: [PATCH] includes nfc code.....not fully tested yet
+
+diff --git a/Quori/AndroidManifest.xml b/Quori/AndroidManifest.xml
+index 2304063..26adefd 100644
+--- a/Quori/AndroidManifest.xml
++++ b/Quori/AndroidManifest.xml
+@@ -1,29 +1,37 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    package="com.example.quori"
+-    android:versionCode="1"
+-    android:versionName="1.0" >
+-
+-    <uses-sdk
+-        android:minSdkVersion="18"
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.example.quori"
++    android:versionCode="1"
++    android:versionName="1.0" >
++
++    <uses-sdk
++        android:minSdkVersion="18"
+         android:targetSdkVersion="18" />
+-    	<uses-permission android:name="android.permission.NFC" />
+-
+-    <application
+-        android:allowBackup="true"
+-        android:icon="@drawable/ic_launcher"
+-        android:label="@string/app_name"
+-        android:theme="@style/AppTheme" >
+-        <activity
+-            android:name="com.example.quori.MainActivity"
+-            android:label="@string/app_name" >
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
++
++    <uses-permission android:name="android.permission.NFC" />
++
++    <application
++        android:allowBackup="true"
++        android:icon="@drawable/ic_launcher"
++        android:label="@string/app_name"
++        android:theme="@style/AppTheme" >
++        <activity
++            android:name="com.example.quori.MainActivity"
++            android:label="@string/app_name" >
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+-            
+-        </activity>
+-    </application>
+-
+-</manifest>
++            
++            <intent-filter>
++                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
++
++                <category android:name="android.intent.category.DEFAULT" />
++
++                <data android:mimeType="text/plain" />
++            </intent-filter>
++        </activity>
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/Quori/Test_Tag.ndef b/Quori/Test_Tag.ndef
+new file mode 100644
+index 0000000..5b17a75
+--- /dev/null
++++ b/Quori/Test_Tag.ndef
+Binary files differ
+diff --git a/Quori/bin/AndroidManifest.xml b/Quori/bin/AndroidManifest.xml
+index 2304063..26adefd 100644
+--- a/Quori/bin/AndroidManifest.xml
++++ b/Quori/bin/AndroidManifest.xml
+@@ -1,29 +1,37 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    package="com.example.quori"
+-    android:versionCode="1"
+-    android:versionName="1.0" >
+-
+-    <uses-sdk
+-        android:minSdkVersion="18"
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.example.quori"
++    android:versionCode="1"
++    android:versionName="1.0" >
++
++    <uses-sdk
++        android:minSdkVersion="18"
+         android:targetSdkVersion="18" />
+-    	<uses-permission android:name="android.permission.NFC" />
+-
+-    <application
+-        android:allowBackup="true"
+-        android:icon="@drawable/ic_launcher"
+-        android:label="@string/app_name"
+-        android:theme="@style/AppTheme" >
+-        <activity
+-            android:name="com.example.quori.MainActivity"
+-            android:label="@string/app_name" >
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
++
++    <uses-permission android:name="android.permission.NFC" />
++
++    <application
++        android:allowBackup="true"
++        android:icon="@drawable/ic_launcher"
++        android:label="@string/app_name"
++        android:theme="@style/AppTheme" >
++        <activity
++            android:name="com.example.quori.MainActivity"
++            android:label="@string/app_name" >
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+-            
+-        </activity>
+-    </application>
+-
+-</manifest>
++            
++            <intent-filter>
++                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
++
++                <category android:name="android.intent.category.DEFAULT" />
++
++                <data android:mimeType="text/plain" />
++            </intent-filter>
++        </activity>
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/Quori/bin/Quori.apk b/Quori/bin/Quori.apk
+index c9fdcdc..f27a662 100644
+--- a/Quori/bin/Quori.apk
++++ b/Quori/bin/Quori.apk
+Binary files differ
+diff --git a/Quori/bin/classes.dex b/Quori/bin/classes.dex
+index bf5b319..720524a 100644
+--- a/Quori/bin/classes.dex
++++ b/Quori/bin/classes.dex
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/CheckInStudentFragment.class b/Quori/bin/classes/com/example/quori/CheckInStudentFragment.class
+new file mode 100644
+index 0000000..4dff747
+--- /dev/null
++++ b/Quori/bin/classes/com/example/quori/CheckInStudentFragment.class
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/MainActivity$CheckInStudentFragment.class b/Quori/bin/classes/com/example/quori/MainActivity$CheckInStudentFragment.class
+deleted file mode 100644
+index f9bcef3..0000000
+--- a/Quori/bin/classes/com/example/quori/MainActivity$CheckInStudentFragment.class
++++ /dev/null
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/MainActivity$SectionsPagerAdapter.class b/Quori/bin/classes/com/example/quori/MainActivity$SectionsPagerAdapter.class
+index e651b33..222dd00 100644
+--- a/Quori/bin/classes/com/example/quori/MainActivity$SectionsPagerAdapter.class
++++ b/Quori/bin/classes/com/example/quori/MainActivity$SectionsPagerAdapter.class
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/MainActivity.class b/Quori/bin/classes/com/example/quori/MainActivity.class
+index 47b28f6..20d6aa7 100644
+--- a/Quori/bin/classes/com/example/quori/MainActivity.class
++++ b/Quori/bin/classes/com/example/quori/MainActivity.class
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/MainSectionFragment$RegisterStudentFragment.class b/Quori/bin/classes/com/example/quori/MainSectionFragment$RegisterStudentFragment.class
+deleted file mode 100644
+index c3cef02..0000000
+--- a/Quori/bin/classes/com/example/quori/MainSectionFragment$RegisterStudentFragment.class
++++ /dev/null
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/MainSectionFragment.class b/Quori/bin/classes/com/example/quori/MainSectionFragment.class
+deleted file mode 100644
+index 5f80376..0000000
+--- a/Quori/bin/classes/com/example/quori/MainSectionFragment.class
++++ /dev/null
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/RegisterStudentFragment.class b/Quori/bin/classes/com/example/quori/RegisterStudentFragment.class
+new file mode 100644
+index 0000000..d042b24
+--- /dev/null
++++ b/Quori/bin/classes/com/example/quori/RegisterStudentFragment.class
+Binary files differ
+diff --git a/Quori/bin/classes/com/example/quori/StudentRosterFragment.class b/Quori/bin/classes/com/example/quori/StudentRosterFragment.class
+new file mode 100644
+index 0000000..a03302c
+--- /dev/null
++++ b/Quori/bin/classes/com/example/quori/StudentRosterFragment.class
+Binary files differ
+diff --git a/Quori/bin/dexedLibs/android-support-v4-200d97010245d70f6cfad046868b35a1.jar b/Quori/bin/dexedLibs/android-support-v4-200d97010245d70f6cfad046868b35a1.jar
+index 164b697..9627cc3 100644
+--- a/Quori/bin/dexedLibs/android-support-v4-200d97010245d70f6cfad046868b35a1.jar
++++ b/Quori/bin/dexedLibs/android-support-v4-200d97010245d70f6cfad046868b35a1.jar
+Binary files differ
+diff --git a/Quori/bin/resources.ap_ b/Quori/bin/resources.ap_
+index f13f360..18c80dd 100644
+--- a/Quori/bin/resources.ap_
++++ b/Quori/bin/resources.ap_
+Binary files differ
+diff --git a/Quori/build.gradle b/Quori/build.gradle
+new file mode 100644
+index 0000000..4012369
+--- /dev/null
++++ b/Quori/build.gradle
+@@ -0,0 +1,42 @@
++buildscript {
++    repositories {
++        mavenCentral()
++    }
++    dependencies {
++        classpath 'com.android.tools.build:gradle:0.5.+'
++    }
++}
++apply plugin: 'android'
++
++dependencies {
++    compile fileTree(dir: 'libs', include: '*.jar')
++}
++
++android {
++    compileSdkVersion 19
++    buildToolsVersion "19.0.1"
++
++    sourceSets {
++        main {
++            manifest.srcFile 'AndroidManifest.xml'
++            java.srcDirs = ['src']
++            resources.srcDirs = ['src']
++            aidl.srcDirs = ['src']
++            renderscript.srcDirs = ['src']
++            res.srcDirs = ['res']
++            assets.srcDirs = ['assets']
++        }
++
++        // Move the tests to tests/java, tests/res, etc...
++        instrumentTest.setRoot('tests')
++
++        // Move the build types to build-types/<type>
++        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
++        // This moves them out of them default location under src/<type>/... which would
++        // conflict with src/ being used by the main source set.
++        // Adding new build types or product flavors should be accompanied
++        // by a similar customization.
++        debug.setRoot('build-types/debug')
++        release.setRoot('build-types/release')
++    }
++}
+diff --git a/Quori/gradle/wrapper/gradle-wrapper.jar b/Quori/gradle/wrapper/gradle-wrapper.jar
+new file mode 100644
+index 0000000..8c0fb64
+--- /dev/null
++++ b/Quori/gradle/wrapper/gradle-wrapper.jar
+Binary files differ
+diff --git a/Quori/gradle/wrapper/gradle-wrapper.properties b/Quori/gradle/wrapper/gradle-wrapper.properties
+new file mode 100644
+index 0000000..5c22dec
+--- /dev/null
++++ b/Quori/gradle/wrapper/gradle-wrapper.properties
+@@ -0,0 +1,6 @@
++#Wed Apr 10 15:27:10 PDT 2013
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
++distributionUrl=http\://services.gradle.org/distributions/gradle-1.6-bin.zip
+diff --git a/Quori/gradlew b/Quori/gradlew
+new file mode 100644
+index 0000000..91a7e26
+--- /dev/null
++++ b/Quori/gradlew
+@@ -0,0 +1,164 @@
++#!/usr/bin/env bash
++
++##############################################################################
++##
++##  Gradle start up script for UN*X
++##
++##############################################################################
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS=""
++
++APP_NAME="Gradle"
++APP_BASE_NAME=`basename "$0"`
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD="maximum"
++
++warn ( ) {
++    echo "$*"
++}
++
++die ( ) {
++    echo
++    echo "$*"
++    echo
++    exit 1
++}
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++case "`uname`" in
++  CYGWIN* )
++    cygwin=true
++    ;;
++  Darwin* )
++    darwin=true
++    ;;
++  MINGW* )
++    msys=true
++    ;;
++esac
++
++# For Cygwin, ensure paths are in UNIX format before anything is touched.
++if $cygwin ; then
++    [ -n "$JAVA_HOME" ] && JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
++fi
++
++# Attempt to set APP_HOME
++# Resolve links: $0 may be a link
++PRG="$0"
++# Need this for relative symlinks.
++while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++        PRG="$link"
++    else
++        PRG=`dirname "$PRG"`"/$link"
++    fi
++done
++SAVED="`pwd`"
++cd "`dirname \"$PRG\"`/" >&-
++APP_HOME="`pwd -P`"
++cd "$SAVED" >&-
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++        JAVACMD="$JAVA_HOME/bin/java"
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD="java"
++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++fi
++
++# Increase the maximum file descriptors if we can.
++if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
++    MAX_FD_LIMIT=`ulimit -H -n`
++    if [ $? -eq 0 ] ; then
++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
++            MAX_FD="$MAX_FD_LIMIT"
++        fi
++        ulimit -n $MAX_FD
++        if [ $? -ne 0 ] ; then
++            warn "Could not set maximum file descriptor limit: $MAX_FD"
++        fi
++    else
++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
++    fi
++fi
++
++# For Darwin, add options to specify how the application appears in the dock
++if $darwin; then
++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
++fi
++
++# For Cygwin, switch paths to Windows format before running java
++if $cygwin ; then
++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
++
++    # We build the pattern for arguments to be converted via cygpath
++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
++    SEP=""
++    for dir in $ROOTDIRSRAW ; do
++        ROOTDIRS="$ROOTDIRS$SEP$dir"
++        SEP="|"
++    done
++    OURCYGPATTERN="(^($ROOTDIRS))"
++    # Add a user-defined pattern to the cygpath arguments
++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
++    fi
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    i=0
++    for arg in "$@" ; do
++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
++
++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
++        else
++            eval `echo args$i`="\"$arg\""
++        fi
++        i=$((i+1))
++    done
++    case $i in
++        (0) set -- ;;
++        (1) set -- "$args0" ;;
++        (2) set -- "$args0" "$args1" ;;
++        (3) set -- "$args0" "$args1" "$args2" ;;
++        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
++        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
++        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
++        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
++        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
++        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
++    esac
++fi
++
++# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
++function splitJvmOpts() {
++    JVM_OPTS=("$@")
++}
++eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
++JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
++
++exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+diff --git a/Quori/gradlew.bat b/Quori/gradlew.bat
+new file mode 100644
+index 0000000..aec9973
+--- /dev/null
++++ b/Quori/gradlew.bat
+@@ -0,0 +1,90 @@
++@if "%DEBUG%" == "" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS=
++
++set DIRNAME=%~dp0
++if "%DIRNAME%" == "" set DIRNAME=.
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if "%ERRORLEVEL%" == "0" goto init
++
++echo.
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto init
++
++echo.
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:init
++@rem Get command-line arguments, handling Windowz variants
++
++if not "%OS%" == "Windows_NT" goto win9xME_args
++if "%@eval[2+2]" == "4" goto 4NT_args
++
++:win9xME_args
++@rem Slurp the command line arguments.
++set CMD_LINE_ARGS=
++set _SKIP=2
++
++:win9xME_args_slurp
++if "x%~1" == "x" goto execute
++
++set CMD_LINE_ARGS=%*
++goto execute
++
++:4NT_args
++@rem Get arguments from the 4NT Shell from JP Software
++set CMD_LINE_ARGS=%$
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
++
++:end
++@rem End local scope for the variables with windows NT shell
++if "%ERRORLEVEL%"=="0" goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
++exit /b 1
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+diff --git a/Quori/res/layout/check_attendance_layout.xml b/Quori/res/layout/check_attendance_layout.xml
+index f7a68a4..835fa8b 100644
+--- a/Quori/res/layout/check_attendance_layout.xml
++++ b/Quori/res/layout/check_attendance_layout.xml
+@@ -24,7 +24,6 @@
+         android:layout_height="15dp"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+-        android:layout_column="0"
+         android:layout_row="0" />
+ 
+     <Space
+@@ -36,9 +35,7 @@
+         android:id="@+id/Space5"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_column="1"
+-        android:layout_gravity="fill_vertical"
+-         />
++        android:layout_column="1"/>
+ 
+     <Button
+         android:id="@+id/button1"
+diff --git a/Quori/src/com/example/quori/MainActivity.java b/Quori/src/com/example/quori/MainActivity.java
+index 329847d..e79300b 100644
+--- a/Quori/src/com/example/quori/MainActivity.java
++++ b/Quori/src/com/example/quori/MainActivity.java
+@@ -2,13 +2,24 @@
+ 
+ import java.util.Locale;
+ 
++import android.app.AlertDialog;
++import android.app.PendingIntent;
++import android.content.DialogInterface;
++import android.content.Intent;
++import android.content.IntentFilter;
++import android.nfc.NdefMessage;
++import android.nfc.NdefRecord;
++import android.nfc.NfcAdapter;
+ import android.os.Bundle;
++import android.os.Parcelable;
++import android.provider.Settings;
+ import android.support.v4.app.Fragment;
+ import android.support.v4.app.FragmentActivity;
+ import android.support.v4.app.FragmentManager;
+ import android.support.v4.app.FragmentPagerAdapter;
+ import android.support.v4.app.NavUtils;
+ import android.support.v4.view.ViewPager;
++import android.util.Log;
+ import android.view.Gravity;
+ import android.view.LayoutInflater;
+ import android.view.Menu;
+@@ -34,6 +45,11 @@
+ 	 */
+ 	ViewPager mViewPager;
+ 
++	private static final String TAG = "NFCReadTag";  
++    private NfcAdapter mNfcAdapter;  
++   // private IntentFilter[] mNdefExchangeFilters;  
++    private PendingIntent mNfcPendingIntent;  
++
+ 	@Override
+ 	protected void onCreate(Bundle savedInstanceState) {
+ 		super.onCreate(savedInstanceState);
+@@ -47,7 +63,13 @@
+ 		// Set up the ViewPager with the sections adapter.
+ 		mViewPager = (ViewPager) findViewById(R.id.pager);
+ 		mViewPager.setAdapter(mSectionsPagerAdapter);
++		
++		//NFC Stuff
++		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);  
+ 
++        
++        //NfcAdapter.NfcAdapter.ACTION_NDEF_DISCOVERED can be used see notes on android site
++        //IntentFilter scanner = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+ 	}
+ 
+ 	@Override
+@@ -56,6 +78,48 @@
+ 		getMenuInflater().inflate(R.menu.main, menu);
+ 		return true;
+ 	}
++//
++    protected void onResume() {  
++        super.onResume();  
++        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
++        mNfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,  
++                getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP  
++                | Intent.FLAG_ACTIVITY_CLEAR_TOP), 0);  
++      } 
++    protected void onNewIntent(Intent intent) {
++    	  String action = intent.getAction();
++    	  if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)){
++    	    Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
++    	    NdefMessage[] messages;
++    	    if (rawMsgs != null) {
++    	      messages = new NdefMessage[rawMsgs.length];
++    	      for (int i = 0; i < rawMsgs.length; i++) {
++    	        messages[i] = (NdefMessage) rawMsgs[i];     
++    	        // To get a NdefRecord and its different properties from a NdefMesssage   
++    	     NdefRecord record = messages[i].getRecords()[i];
++    	     byte[] id = record.getId();
++    	     short tnf = record.getTnf();
++    	     byte[] type = record.getType();
++    	     String message = getTextData(record.getPayload());
++    	      }
++    	  
++    	    }
++    	  }
++    	}
++ // Decoding a payload containing text
++    private String getTextData(byte[] payload) {
++      if(payload == null) 
++        return null;
++      try {
++        String encoding = ((payload[0] & 0200) == 0) ? "UTF-8" : "UTF-16";
++        int langageCodeLength = payload[0] & 0077;
++        return new String(payload, langageCodeLength + 1, payload.length - langageCodeLength - 1, encoding);     
++      } catch(Exception e) {
++        e.printStackTrace();
++      }
++      return null;
++    }
++//   
+ 
+ 	/**
+ 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+@@ -70,13 +134,36 @@
+ 		@Override
+ 		public Fragment getItem(int position) {
+ 			// getItem is called to instantiate the fragment for the given page.
+-			// Return a MainSectionFragment (defined as a static inner class
++			// Return a StudentRosterFragment (defined as a static inner class
+ 			// below) with the page number as its lone argument.
+-			Fragment fragment = new MainSectionFragment();
++			Fragment fragment;
+ 			Bundle args = new Bundle();
+-			args.putInt(MainSectionFragment.ARG_SECTION_NUMBER, position + 1);
+-			fragment.setArguments(args);
+-			return fragment;
++			
++			switch(position){
++			case 0:
++				fragment = new CheckInStudentFragment();
++				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
++				fragment.setArguments(args);
++				return fragment;
++			//	break;
++			case 1:
++				fragment = new StudentRosterFragment();
++				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
++				fragment.setArguments(args);
++				return fragment;
++				//break;
++			case 2:
++				fragment = new RegisterStudentFragment();
++				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
++				fragment.setArguments(args);
++				return fragment;
++				//break;
++			}
++			
++			return null;
++			
++			
++			
+ 		}
+ 
+ 		@Override
+@@ -99,28 +186,27 @@
+ 			return null;
+ 		}
+ 	}
+-	/**
+-	 * A dummy fragment representing a section of the app, but that simply
+-	 * displays dummy text.
+-	 */
+-	public static class CheckInStudentFragment extends Fragment {
+-		/**
+-		 * The fragment argument representing the section number for this
+-		 * fragment.
+-		 */
+-		public static final String ARG_SECTION_NUMBER = "section_number";
+ 
+-		public CheckInStudentFragment() {
+-		}
+-
+-		@Override
+-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-				Bundle savedInstanceState) {
+-			View rootView = inflater.inflate(R.layout.check_attendance_layout,
+-					container, false);
+-			
+-
+-			return rootView;
+-		}
+-	}
+ }
++
++class CheckInStudentFragment extends Fragment {
++	/**
++	 * The fragment argument representing the section number for this
++	 * fragment.
++	 */
++	public static final String ARG_SECTION_NUMBER = "section_number";
++
++	public CheckInStudentFragment() {
++	}
++
++	@Override
++	public View onCreateView(LayoutInflater inflater, ViewGroup container,
++			Bundle savedInstanceState) {
++		View rootView = inflater.inflate(R.layout.check_attendance_layout,
++				container, false);
++		
++
++		return rootView;
++	}
++	
++}
+\ No newline at end of file
+diff --git a/Quori/src/com/example/quori/MainSectionFragment.java b/Quori/src/com/example/quori/MainSectionFragment.java
+deleted file mode 100644
+index fdf8d3a..0000000
+--- a/Quori/src/com/example/quori/MainSectionFragment.java
++++ /dev/null
+@@ -1,58 +0,0 @@
+-package com.example.quori;
+-
+-import android.os.Bundle;
+-import android.support.v4.app.Fragment;
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-
+-/**
+- * A dummy fragment representing a section of the app, but that simply
+- * displays dummy text.
+- */
+-public class MainSectionFragment extends Fragment {
+-	/**
+-	 * The fragment argument representing the section number for this
+-	 * fragment.
+-	 */
+-	public static final String ARG_SECTION_NUMBER = "section_number";
+-
+-	public MainSectionFragment() {
+-	}
+-
+-	@Override
+-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-			Bundle savedInstanceState) {
+-		View rootView = inflater.inflate(R.layout.fragment_main,
+-				container, false);
+-		
+-
+-		return rootView;
+-	}
+-	/**
+-	 * A dummy fragment representing a section of the app, but that simply
+-	 * displays dummy text.
+-	 */
+-	public static class RegisterStudentFragment extends Fragment {
+-		/**
+-		 * The fragment argument representing the section number for this
+-		 * fragment.
+-		 */
+-		public static final String ARG_SECTION_NUMBER = "section_number";
+-
+-		public RegisterStudentFragment() {
+-		}
+-
+-		@Override
+-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-				Bundle savedInstanceState) {
+-			View rootView = inflater.inflate(R.layout.check_attendance_layout,
+-					container, false);
+-			
+-
+-			return rootView;
+-		}
+-	}
+-	
+-	
+-}
+diff --git a/Quori/src/com/example/quori/RegisterStudentFragment.java b/Quori/src/com/example/quori/RegisterStudentFragment.java
+new file mode 100644
+index 0000000..6ae6061
+--- /dev/null
++++ b/Quori/src/com/example/quori/RegisterStudentFragment.java
+@@ -0,0 +1,32 @@
++package com.example.quori;
++
++import android.os.Bundle;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++/**
++ * A dummy fragment representing a section of the app, but that simply
++ * displays dummy text.
++ */
++public class RegisterStudentFragment extends Fragment {
++	/**
++	 * The fragment argument representing the section number for this
++	 * fragment.
++	 */
++	public static final String ARG_SECTION_NUMBER = "section_number";
++
++	public RegisterStudentFragment() {
++	}
++
++	@Override
++	public View onCreateView(LayoutInflater inflater, ViewGroup container,
++			Bundle savedInstanceState) {
++		View rootView = inflater.inflate(R.layout.student_profile_fragment,
++				container, false);
++		
++
++		return rootView;
++	}
++}
+\ No newline at end of file
+diff --git a/Quori/src/com/example/quori/StudentRosterFragment.java b/Quori/src/com/example/quori/StudentRosterFragment.java
+new file mode 100644
+index 0000000..52bc175
+--- /dev/null
++++ b/Quori/src/com/example/quori/StudentRosterFragment.java
+@@ -0,0 +1,34 @@
++package com.example.quori;
++
++import android.os.Bundle;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++/**
++ * A dummy fragment representing a section of the app, but that simply
++ * displays dummy text.
++ */
++public class StudentRosterFragment extends Fragment {
++	/**
++	 * The fragment argument representing the section number for this
++	 * fragment.
++	 */
++	public static final String ARG_SECTION_NUMBER = "section_number";
++
++	public StudentRosterFragment() {
++	}
++
++	@Override
++	public View onCreateView(LayoutInflater inflater, ViewGroup container,
++			Bundle savedInstanceState) {
++		View rootView = inflater.inflate(R.layout.activity_main,
++				container, false);
++		
++
++		return rootView;
++	}
++	
++
++}
+\ No newline at end of file
