@@ -1,5 +1,40 @@
 package com.example.quori;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.Locale;
+
+import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.Settings;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
 import java.util.Locale;
 
 import android.app.AlertDialog;
@@ -27,6 +62,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -70,6 +106,7 @@ public class MainActivity extends FragmentActivity {
         
         //NfcAdapter.NfcAdapter.ACTION_NDEF_DISCOVERED can be used see notes on android site
         //IntentFilter scanner = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+		setIntent(getIntent());
 	}
 
 	@Override
@@ -101,6 +138,7 @@ public class MainActivity extends FragmentActivity {
     	     short tnf = record.getTnf();
     	     byte[] type = record.getType();
     	     String message = getTextData(record.getPayload());
+    	     Toast.makeText(this, message, Toast.LENGTH_LONG);
     	      }
     	  
     	    }

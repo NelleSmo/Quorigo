@@ -14,5 +14,11 @@
     <string name="curr_abs_val">2</string>
     <string name="lastAttendedLabel">Last Attended:</string>
     <string name="LastAttendedValue">3/15/2014</string>
+    <string name="title_activity_login_">Login_Activity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="pass">password</string>
+    <string name="user">username</string>
+    <string name="submit">submit</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
