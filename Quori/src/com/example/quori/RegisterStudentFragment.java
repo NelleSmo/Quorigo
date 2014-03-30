@@ -23,7 +23,7 @@ public class RegisterStudentFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.student_profile_fragment,
+		View rootView = inflater.inflate(R.layout.check_attendance_layout,
 				container, false);
 		
 
