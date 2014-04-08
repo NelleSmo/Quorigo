@@ -20,5 +20,6 @@
     <string name="user">username</string>
     <string name="submit">submit</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_student_registration">Student_registration</string>
 
 </resources>

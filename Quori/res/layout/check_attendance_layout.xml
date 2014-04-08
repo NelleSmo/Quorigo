@@ -51,11 +51,18 @@
         android:id="@+id/sp_nameTextView"
         android:layout_width="260dp"
         android:layout_height="98dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="146dp"
-        android:layout_marginTop="182dp"
+        android:layout_below="@+id/Space3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
         android:text="@string/CheckAttendanceInstructionString"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/submitbtn"
+        android:layout_below="@+id/Space3"
+        android:layout_marginTop="61dp" />
 
 </RelativeLayout>
