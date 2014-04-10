@@ -68,6 +68,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.quori.Registration_Activity"
+            >
+            <intent-filter >
+                <action android:name ="android.intent.action.MaIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.example.quori.Student_registration"
             android:label="@string/title_activity_student_registration" >
             <intent-filter>
