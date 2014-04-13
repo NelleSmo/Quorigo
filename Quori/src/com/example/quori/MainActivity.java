@@ -81,10 +81,7 @@ public class MainActivity extends FragmentActivity {
 	 */
 	ViewPager mViewPager;
 
-	private static final String TAG = "NFCReadTag";  
-    private NfcAdapter mNfcAdapter;  
-   // private IntentFilter[] mNdefExchangeFilters;  
-    private PendingIntent mNfcPendingIntent;  
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +97,11 @@ public class MainActivity extends FragmentActivity {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
-		//NFC Stuff
-		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);  
-
-        
-        //NfcAdapter.NfcAdapter.ACTION_NDEF_DISCOVERED can be used see notes on android site
-        //IntentFilter scanner = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-		setIntent(getIntent());
+		
+		Intent myIntent = new Intent(this, NFCReadActivity.class);
+		myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		startActivity(myIntent);
+		
 	}
 
 	@Override
@@ -118,46 +113,9 @@ public class MainActivity extends FragmentActivity {
 //
     protected void onResume() {  
         super.onResume();  
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-        mNfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,  
-                getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP  
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP), 0);  
+       
       } 
-    protected void onNewIntent(Intent intent) {
-    	  String action = intent.getAction();
-    	  if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)){
-    	    Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
-    	    NdefMessage[] messages;
-    	    if (rawMsgs != null) {
-    	      messages = new NdefMessage[rawMsgs.length];
-    	      for (int i = 0; i < rawMsgs.length; i++) {
-    	        messages[i] = (NdefMessage) rawMsgs[i];     
-    	        // To get a NdefRecord and its different properties from a NdefMesssage   
-    	     NdefRecord record = messages[i].getRecords()[i];
-    	     byte[] id = record.getId();
-    	     short tnf = record.getTnf();
-    	     byte[] type = record.getType();
-    	     String message = getTextData(record.getPayload());
-    	     Toast.makeText(this, message, Toast.LENGTH_LONG);
-    	      }
-    	  
-    	    }
-    	  }
-    	}
- // Decoding a payload containing text
-    private String getTextData(byte[] payload) {
-      if(payload == null) 
-        return null;
-      try {
-        String encoding = ((payload[0] & 0200) == 0) ? "UTF-8" : "UTF-16";
-        int langageCodeLength = payload[0] & 0077;
-        return new String(payload, langageCodeLength + 1, payload.length - langageCodeLength - 1, encoding);     
-      } catch(Exception e) {
-        e.printStackTrace();
-      }
-      return null;
-    }
-//   
+
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
