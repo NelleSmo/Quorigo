@@ -26,7 +26,7 @@ public class NFCReadActivity extends Activity {
 	private PendingIntent mNFCPendingIntent;
 	private static final String TAG = "StudentTAG";
 	private TextView mTextView;
-	private String MIME_TEXT_PLAIN;
+	public static String MIME_TEXT_PLAIN = "text/plain";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -49,10 +49,10 @@ public class NFCReadActivity extends Activity {
 		}
 		else{
 			//mTextView.setText("NFC tag ready!");
-			handleIntent(getIntent());
+			
 		}
 		
-		
+		handleIntent(getIntent());
 		
 	}
 	@Override
@@ -175,7 +175,7 @@ public class NFCReadActivity extends Activity {
 	    
 	        try {
 	        	msg = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
-	        	mTextView.setText(msg);
+	        	//mTextView.setText(msg);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
