@@ -53,10 +53,10 @@ public class Login_Activity extends Activity implements OnClickListener{
 
 	JsonParser jsonParser = new JsonParser();
 	private ProgressDialog pDialog;
-	private static final String LOGIN_URL = "http://152.8.115.221/Quirigo/qurigiologin.php?user=";
+	private static final String LOGIN_URL = "http://152.8.115.221/Quorigo/quorigologin.php?username=";
 	private static final int DB_DATA_MAX_FIELDS = 3;
 	private attemptLogin mAuthTask = null;
-	private final String[] DB_FIELDS = { "id", "username", "password" };
+	private final String[] DB_FIELDS = { "InstructorID", "username", "password" };
 	String userId;
 
 	@Override

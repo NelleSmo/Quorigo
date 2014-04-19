@@ -132,7 +132,7 @@ public class MainActivity extends FragmentActivity {
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a StudentRosterFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment;
+			Fragment fragment = null;
 			Bundle args = new Bundle();
 			
 			switch(position){
@@ -140,23 +140,23 @@ public class MainActivity extends FragmentActivity {
 				fragment = new CheckInStudentFragment();
 				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
-				return fragment;
-			//	break;
+			
+			break;
 			case 1:
 				fragment = new StudentRosterFragment();
 				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
-				return fragment;
-				//break;
+				
+				break;
 			case 2:
 				fragment = new StudentRegistrationFrament();
 				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
-				return fragment;
-				//break;
+				
+				break;
 			}
 			
-			return null;
+			return fragment;
 			
 			
 			

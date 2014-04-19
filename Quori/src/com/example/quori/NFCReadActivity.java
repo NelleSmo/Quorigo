@@ -26,7 +26,8 @@ public class NFCReadActivity extends Activity {
 	private PendingIntent mNFCPendingIntent;
 	private static final String TAG = "StudentTAG";
 	private TextView mTextView;
-	public static String MIME_TEXT_PLAIN = "text/plain";
+	private static String MIME_TEXT_PLAIN = "text/plain";
+	private String Result;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -74,8 +75,8 @@ public class NFCReadActivity extends Activity {
 		
 		mNFCPendingIntent = PendingIntent.getActivity(activity.getApplicationContext(), 0, intent, 0);
 		
-		IntentFilter[] ifilters = new IntentFilter[1];
-        String[][] techList = new String[][]{};
+		IntentFilter[] ifilters = new IntentFilter[1]; //filters out the types of NFC actions to look for
+        String[][] techList = new String[][]{}; //the tech we are looking for
         
         ifilters[0] = new IntentFilter();
         ifilters[0].addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
@@ -96,7 +97,7 @@ public class NFCReadActivity extends Activity {
 	private void handleIntent(Intent intent) {
 		// TODO Auto-generated method stub
 		String action = intent.getAction();
-	    if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
+	    if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) { //TODO: Be able to explain this code
 	         
 	        String type = intent.getType();
 	        if (MIME_TEXT_PLAIN.equals(type)) {
@@ -123,6 +124,12 @@ public class NFCReadActivity extends Activity {
 	    }
 		
 	}
+	public String getResult() {
+		return Result;
+	}
+	private void setResult(String result) {
+		Result = result;
+	}
 	private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
 
 		
@@ -138,7 +145,7 @@ public class NFCReadActivity extends Activity {
 		            return null;
 		        }
 		 
-		        NdefMessage ndefMessage = ndef.getCachedNdefMessage();
+		        NdefMessage ndefMessage = ndef.getCachedNdefMessage(); //TODO: look up
 		 
 		        NdefRecord[] records = ndefMessage.getRecords();
 		        for (NdefRecord ndefRecord : records) {
@@ -166,10 +173,8 @@ public class NFCReadActivity extends Activity {
 	        String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16";
 	 
 	        // Get the Language Code
-	        int languageCodeLength = payload[0] & 0063;
+	        int languageCodeLength = payload[0] & 0063; //TODO: look up
 	         
-	        // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-	        // e.g. "en"
 	         
 	        // Get the Text
 	    
@@ -185,7 +190,8 @@ public class NFCReadActivity extends Activity {
 		@Override
 	    protected void onPostExecute(String result) {
 	        if (result != null) {
-	            mTextView.setText("Read content: " + result);
+	           // mTextView.setText(result);
+	            setResult(result);
 	        }
 	    }
 		
