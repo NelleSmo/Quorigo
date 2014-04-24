@@ -25,7 +25,7 @@
         android:layout_marginRight="53dp"
         android:fitsSystemWindows="false"
         android:scaleType="fitXY" />
-
+<!--  -->
     <TextView
         android:id="@+id/currAbsLayoutTextView"
         android:layout_width="wrap_content"

@@ -61,5 +61,5 @@
         android:background="@drawable/bluebutton"
         android:padding="0dp"
         android:text="@string/CheckInButtonLabel" />
-
+<!--  -->
 </RelativeLayout>
