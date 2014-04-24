@@ -10,63 +10,63 @@
         android:layout_width="190dp"
         android:layout_height="190dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp" />
+        android:layout_alignRight="@+id/LastAttendedLabelTextView"
+        android:baselineAlignBottom="true"
+        android:cropToPadding="true"
+        android:maxHeight="12dp"
+        android:maxWidth="12dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currAbsLayoutTextView"
         android:layout_below="@+id/currAbsLayoutTextView"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="22dp"
+        android:layout_centerHorizontal="true"
         android:text="@string/curr_abs_val"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="35sp" />
-
-    <TextView
-        android:id="@+id/currAbsLayoutTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="50dp"
-        android:text="@string/curr_Abs_label"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/sp_nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currAbsLayoutTextView"
-        android:layout_below="@+id/quickContactBadge1"
-        android:layout_marginTop="23dp"
-        android:text="@string/stud_Name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50sp" />
-
-    <TextView
-        android:id="@+id/LastAttendedLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currAbsLayoutTextView"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="42dp"
-        android:text="@string/lastAttendedLabel"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40sp" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/currentAbsencesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/LastAttendedLabelTextView"
-        android:layout_marginTop="27dp"
+        android:layout_centerHorizontal="true"
         android:text="@string/LastAttendedValue"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="35sp" />
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/currAbsLayoutTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sp_nameTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="@string/curr_Abs_label"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/sp_nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quickContactBadge1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/stud_Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/LastAttendedLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/lastAttendedLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
 
 </RelativeLayout>

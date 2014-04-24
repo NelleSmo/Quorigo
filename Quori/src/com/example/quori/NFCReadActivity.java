@@ -32,7 +32,7 @@ public class NFCReadActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.student_profile_fragment);
+		setContentView(R.layout.activity_main);
 		
 		mTextView= (TextView) findViewById(R.id.sp_nameTextView);
 		

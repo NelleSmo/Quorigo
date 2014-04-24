@@ -7,32 +7,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Login_Activity" >
 
-    <EditText
-        android:id="@+id/editpass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="192dp"
-        android:ems="10"
-        android:hint="@string/pass"
-        android:inputType="textPassword" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/edituser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editpass"
-        android:layout_alignLeft="@+id/editpass"
-        android:layout_marginBottom="81dp"
-        android:ems="10"
-        android:hint="@string/user"
-        android:inputType="textPersonName"
-       />
-
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
@@ -61,5 +35,30 @@
         android:layout_alignRight="@+id/editpass"
         android:layout_below="@+id/editpass"
         android:layout_marginTop="28dp" />
+
+    <EditText
+        android:id="@+id/editpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="185dp"
+        android:ems="10"
+        android:hint="@string/pass"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edituser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editpass"
+        android:layout_alignRight="@+id/editpass"
+        android:layout_marginBottom="51dp"
+        android:ems="10"
+        android:hint="@string/user"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

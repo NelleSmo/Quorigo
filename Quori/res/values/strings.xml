@@ -21,5 +21,8 @@
     <string name="submit">submit</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_student_registration">Student_registration</string>
+    <string name="title_activity_nfcwrite">NFCWriteActivity</string>
+    <string name="enter_in_e_mail_address">Enter in e-mail address</string>
+    <string name="contentDesc">person\'s image</string>
 
 </resources>

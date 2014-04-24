@@ -22,7 +22,9 @@
         android:layout_height="400dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="53dp" />
+        android:layout_marginRight="53dp"
+        android:fitsSystemWindows="false"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/currAbsLayoutTextView"

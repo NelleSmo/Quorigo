@@ -7,13 +7,13 @@
     <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" >
         <tech-list>
             <tech>
-android.nfc.tech.Ndef
+android.nfc.tech.Ndef
             </tech>
             <tech>
-android.nfc.tech.MifareClassic
+android.nfc.tech.MifareClassic
             </tech>
             <tech>
-android.nfc.tech.MifareUltralight
+android.nfc.tech.MifareUltralight
             </tech>
             <!-- class name -->
         </tech-list>
@@ -32,7 +32,7 @@ android.nfc.tech.MifareUltralight
         <tech>android.nfc.tech.MifareClassic</tech>
         <tech>android.nfc.tech.MifareUltralight</tech>
     </tech-list>
-</resources>
+</resources>
     -->
 
     <uses-sdk
@@ -74,11 +74,7 @@ android.nfc.tech.MifareUltralight
             </intent-filter>
         </activity>
         <activity android:name="com.example.quori.Registration_Activity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MaIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name="com.example.quori.Student_registration"
@@ -92,6 +88,10 @@ android.nfc.tech.MifareUltralight
         <activity android:name="com.example.quori.NFCReadActivity" >
         </activity>
         <activity android:name="com.example.quori.NdefReaderTask" >
+        </activity>
+        <activity
+            android:name="com.example.quori.NFCWriteActivity"
+            android:label="@string/title_activity_nfcwrite" >
         </activity>
     </application>
 

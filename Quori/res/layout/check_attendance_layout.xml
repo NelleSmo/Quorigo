@@ -23,8 +23,7 @@
         android:layout_width="1dp"
         android:layout_height="15dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_row="0" />
+        android:layout_alignParentTop="true"/>
 
     <Space
         android:id="@+id/Space4"
@@ -34,18 +33,7 @@
     <Space
         android:id="@+id/Space5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"/>
-
-    <TextView
-        android:id="@+id/sp_nameTextView"
-        android:layout_width="260dp"
-        android:layout_height="98dp"
-        android:layout_below="@+id/Space3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:text="@string/CheckAttendanceInstructionString"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/display"
@@ -55,13 +43,23 @@
         android:layout_below="@+id/Space3"
         android:layout_marginTop="61dp" />
 
+    <TextView
+        android:id="@+id/sp_nameTextView"
+        android:layout_width="260dp"
+        android:layout_height="98dp"
+        android:layout_alignRight="@+id/checkinbtn"
+        android:layout_alignTop="@+id/display"
+        android:text="@string/CheckAttendanceInstructionString"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <Button
         android:id="@+id/checkinbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sp_nameTextView"
         android:layout_below="@+id/sp_nameTextView"
-        android:layout_marginTop="72dp"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bluebutton"
+        android:padding="0dp"
+        android:text="@string/CheckInButtonLabel" />
 
 </RelativeLayout>

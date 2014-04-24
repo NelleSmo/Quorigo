@@ -24,7 +24,7 @@ public class StudentRosterFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.activity_student_registration,
+		View rootView = inflater.inflate(R.layout.activity_main,
 				container, false);
 		
 
