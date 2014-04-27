@@ -195,8 +195,8 @@ public class Login_Activity extends Activity implements OnClickListener{
 
 			Log.d("authentication", "authenticating user with database...");
 			Context context = getApplicationContext();
-			Toast.makeText(context, password, Toast.LENGTH_LONG);
-			Toast.makeText(context, dbData[2], Toast.LENGTH_LONG);
+			Toast.makeText(context, password, Toast.LENGTH_LONG);//Used to check to see if the password is being read
+			Toast.makeText(context, dbData[2], Toast.LENGTH_LONG);//Used to check to see if the password is in the database array
 			if (dbData[2].equals(password)) {
 				Looper.myLooper().quit();
 				return true;

@@ -1,7 +1,26 @@
 package com.example.quori;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.InterruptedIOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.quori.Login_Activity.attemptLogin;
 
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -10,9 +29,12 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
@@ -28,11 +50,19 @@ public class NFCReadActivity extends Activity {
 	private TextView mTextView;
 	private static String MIME_TEXT_PLAIN = "text/plain";
 	private String Result;
+	JsonParser jsonParser = new JsonParser();
+	private ProgressDialog pDialog;
+	private static final String URL = "http://152.8.115.221/Quorigo/checkin.php?";
+	private static final int DB_DATA_MAX_FIELDS = 1;
+	private attemptLogin mAuthTask = null;
+	private final String[] DB_FIELDS = { "UID"};
+	String userId;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.student_profile_fragment);
 		
 		mTextView= (TextView) findViewById(R.id.sp_nameTextView);
 		
@@ -118,10 +148,12 @@ public class NFCReadActivity extends Activity {
 	        for (String tech : techList) {
 	            if (searchedTech.equals(tech)) {
 	                new NdefReaderTask().execute(tag);
+	              
 	                break;
 	            }
 	        }
 	    }
+       
 		
 	}
 	public String getResult() {
@@ -187,17 +219,126 @@ public class NFCReadActivity extends Activity {
 			}
 		return msg;
 		}
+		
+		
 		@Override
 	    protected void onPostExecute(String result) {
 	        if (result != null) {
-	           // mTextView.setText(result);
+	           mTextView.setText(result);
 	            setResult(result);
+	          
+	            
+	            
 	        }
-	    }
-		
+	      
 
+		new SendUIDTask().execute();
+	}
+
+
+	 
+	private class SendUIDTask extends AsyncTask<Void, Void, Boolean> {
+
+		public boolean sendUID(){
+		 String UID = getResult();
+		 Toast.makeText(getApplicationContext(), getResult(),Toast.LENGTH_LONG).show();
+		  
+			// HTTP Post
+			try {
+				// Create HttpClient to handle connection
+				HttpClient http_client = new DefaultHttpClient();
+				// Create HttpPost to connect to php file
+				HttpPost http_post = new HttpPost(URL + UID);
+
+				// Create response to read in information sent
+				http_client.execute(http_post); // Execute
+																		// script
+				// Store the sent information
+				
+
+				// Handle exception
+			} catch (Exception e) {
+				Log.e("log_tag", "Error in http connection " + e.toString());
+				return false;
+			}
+			return true;
+		}
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				// Simulate network access.
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+				return false;
+			}
+			Log.d("user", sendUID() + "");
+			return true; // Return if user is verified or not
+		
+		         
+		}
+	
+	
+@Override
+    protected void onPostExecute(final Boolean success) {
+        if (success) {
+        Toast.makeText(getApplicationContext(), "You have successful logged user for attendance", Toast.LENGTH_LONG).show();
+        }
+      
+    
+	
+
+}
+}
 	}
 }
+
+	
+//	protected void sendJson(final String result) {
+//        Thread t = new Thread() {
+//
+//            public void run() {
+//                Looper.prepare(); //For Preparing Message Pool for the child Thread
+//                HttpClient client = new DefaultHttpClient();
+//                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+//                HttpResponse response;
+//                JSONObject json = new JSONObject();
+//                Context context = getApplicationContext();
+//                try {
+//                    HttpPost post = new HttpPost(LOGIN_URL + result);
+//                    client.execute(post);
+//                    Log.d("posting", "posting to the URL");
+//                  
+//                    Toast.makeText(context, "posting", Toast.LENGTH_SHORT).show();
+//                   
+//                    StringEntity se = new StringEntity( json.toString());  
+//                    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//                    post.setEntity(se);
+//                    response = client.execute(post);
+//                  
+//
+//                    /*Checking response */
+//                    if(response!=null){
+//                        InputStream in = response.getEntity().getContent(); //Get the data in the entity
+//                       // Toast.makeText(context, in.toString(), Toast.LENGTH_SHORT).show();
+//
+//                        //if(in==1){
+//                        //	Toast.makeText(context, "The name was successfully read", Toast.LENGTH_SHORT);
+//                        //}
+//                    }
+//
+//                } catch(Exception e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(context,"Error Cannot Estabilish Connection", Toast.LENGTH_SHORT).show();
+//                }
+//
+//             //   Looper.loop(); //Loop in the message queue
+//            }
+//        };
+//
+//        t.start();      
+//    }
+//}
 
 
 

@@ -59,18 +59,15 @@ public final class R {
         public static final int activity_login=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_nfc=0x7f030002;
-        public static final int activity_nfcwrite=0x7f030003;
-        public static final int activity_student_registration=0x7f030004;
-        public static final int check_attendance_layout=0x7f030005;
-        public static final int fragment_main=0x7f030006;
-        public static final int student_profile_fragment=0x7f030007;
+        public static final int activity_student_registration=0x7f030003;
+        public static final int check_attendance_layout=0x7f030004;
+        public static final int fragment_main=0x7f030005;
+        public static final int student_profile_fragment=0x7f030006;
     }
     public static final class menu {
         public static final int login_=0x7f070000;
         public static final int main=0x7f070001;
-        public static final int nfc=0x7f070002;
-        public static final int nfcwrite=0x7f070003;
-        public static final int student_registration=0x7f070004;
+        public static final int student_registration=0x7f070002;
     }
     public static final class string {
         public static final int CheckAttendanceInstructionString=0x7f050005;
