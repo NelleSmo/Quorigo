@@ -226,14 +226,19 @@ public class NFCReadActivity extends Activity {
 	        if (result != null) {
 	           mTextView.setText(result);
 	            setResult(result);
-	          
-	            
-	            
+	         final SendUIDTask uidTask = new SendUIDTask();
+	         new Thread(new Runnable(){
+	        	 public void run(){
+	        		 uidTask.execute((Void) null);
+	        	 }
+	         }).start();  
+		
+	       
 	        }
 	      
 
-		new SendUIDTask().execute();
-	}
+		
+		}
 
 
 	 
@@ -265,13 +270,6 @@ public class NFCReadActivity extends Activity {
 		}
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			try {
-				// Simulate network access.
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-				return false;
-			}
 			Log.d("user", sendUID() + "");
 			return true; // Return if user is verified or not
 		

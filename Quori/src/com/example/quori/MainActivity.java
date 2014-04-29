@@ -138,7 +138,7 @@ public class MainActivity extends FragmentActivity {
 			switch(position){
 			case 0:
 				fragment = new CheckInStudentFragment();
-				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
+				args.putInt(CheckInStudentFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
 			
 			break;
@@ -185,24 +185,5 @@ public class MainActivity extends FragmentActivity {
 
 }
 
-class CheckInStudentFragment extends Fragment {
-	/**
-	 * The fragment argument representing the section number for this
-	 * fragment.
-	 */
-	public static final String ARG_SECTION_NUMBER = "section_number";
 
-	public CheckInStudentFragment() {
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.check_attendance_layout,
-				container, false);
-		
-
-		return rootView;
-	}
 	
-}

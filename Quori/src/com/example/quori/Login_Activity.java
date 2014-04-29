@@ -99,6 +99,7 @@ public class Login_Activity extends Activity implements OnClickListener{
 			Log.d("user set?", username + "");
 			username = user.getText().toString();
 			password = pass.getText().toString();
+	
 			new attemptLogin().execute();
 			break;
 
