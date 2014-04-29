@@ -52,7 +52,7 @@ public class NFCReadActivity extends Activity {
 	private String Result;
 	JsonParser jsonParser = new JsonParser();
 	private ProgressDialog pDialog;
-	private static final String URL = "http://152.8.115.221/Quorigo/checkin.php?";
+	private static final String URL = "http://152.8.115.221/Quorigo/checkin.php?UID=";
 	private static final int DB_DATA_MAX_FIELDS = 1;
 	private attemptLogin mAuthTask = null;
 	private final String[] DB_FIELDS = { "UID"};
@@ -229,7 +229,14 @@ public class NFCReadActivity extends Activity {
 	         final SendUIDTask uidTask = new SendUIDTask();
 	         new Thread(new Runnable(){
 	        	 public void run(){
-	        		 uidTask.execute((Void) null);
+	        		 try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        		 uidTask.execute();
+	        		
 	        	 }
 	         }).start();  
 		
@@ -246,6 +253,7 @@ public class NFCReadActivity extends Activity {
 
 		public boolean sendUID(){
 		 String UID = getResult();
+		 if (UID !=null){
 		 Toast.makeText(getApplicationContext(), getResult(),Toast.LENGTH_LONG).show();
 		  
 			// HTTP Post
@@ -254,7 +262,8 @@ public class NFCReadActivity extends Activity {
 				HttpClient http_client = new DefaultHttpClient();
 				// Create HttpPost to connect to php file
 				HttpPost http_post = new HttpPost(URL + UID);
-
+				Log.d("posting UR L"+ http_post + " ", UID);
+				Log.d("posting URL", URL + UID);
 				// Create response to read in information sent
 				http_client.execute(http_post); // Execute
 																		// script
@@ -266,10 +275,20 @@ public class NFCReadActivity extends Activity {
 				Log.e("log_tag", "Error in http connection " + e.toString());
 				return false;
 			}
+			
 			return true;
+		 }
+		 return false;
 		}
 		@Override
 		protected Boolean doInBackground(Void... params) {
+			Looper.prepare();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			Log.d("user", sendUID() + "");
 			return true; // Return if user is verified or not
 		
@@ -280,17 +299,20 @@ public class NFCReadActivity extends Activity {
 @Override
     protected void onPostExecute(final Boolean success) {
         if (success) {
+ 
+
         Toast.makeText(getApplicationContext(), "You have successful logged user for attendance", Toast.LENGTH_LONG).show();
         }
-      
+
     
 	
 
 }
 }
 	}
-}
 
+	
+}
 	
 //	protected void sendJson(final String result) {
 //        Thread t = new Thread() {
