@@ -47,24 +47,39 @@ public class NFCReadActivity extends Activity {
 	private NfcAdapter mNFCAdapter = null;
 	private PendingIntent mNFCPendingIntent;
 	private static final String TAG = "StudentTAG";
-	private TextView mTextView;
+	private TextView nameTextView;
 	private static String MIME_TEXT_PLAIN = "text/plain";
 	private String Result;
 	JsonParser jsonParser = new JsonParser();
 	private ProgressDialog pDialog;
-	private static final String URL = "http://152.8.115.221/Quorigo/checkin.php?UID=";
-	private static final int DB_DATA_MAX_FIELDS = 1;
-	private attemptLogin mAuthTask = null;
-	private final String[] DB_FIELDS = { "UID"};
+	private static String checkValue;
+	private String[] dbData = {"","","",""}; 
+
+	private static final int DB_DATA_MAX_FIELDS = 4;
+	
+	private final String[] DB_FIELDS = { "Lname", "Fname", "Absences", "LastCheck"};
 	String userId;
+	private TextView currentAbsence;
+	private TextView LastAttended;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.student_profile_fragment);
+		Intent intent = getIntent();
+		if (intent.hasExtra("check")) {
+			checkValue =intent.getStringExtra("check");
+			}
+		else{}
+
 		
-		mTextView= (TextView) findViewById(R.id.sp_nameTextView);
+		Log.d("check", checkValue+"");
+		nameTextView= (TextView) findViewById(R.id.sp_nameTextView);
+		currentAbsence = (TextView)findViewById(R.id.currentAbsencesTextView);
+		LastAttended = (TextView)findViewById(R.id.LastAttendedLabelTextView);
+		
+				
 		
 		mNFCAdapter = NfcAdapter.getDefaultAdapter(this);
 		
@@ -224,13 +239,13 @@ public class NFCReadActivity extends Activity {
 		@Override
 	    protected void onPostExecute(String result) {
 	        if (result != null) {
-	           mTextView.setText(result);
+	           
 	            setResult(result);
 	         final SendUIDTask uidTask = new SendUIDTask();
 	         new Thread(new Runnable(){
 	        	 public void run(){
 	        		 try {
-						Thread.sleep(2000);
+						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -251,6 +266,13 @@ public class NFCReadActivity extends Activity {
 	 
 	private class SendUIDTask extends AsyncTask<Void, Void, Boolean> {
 
+		private InputStream is;
+		private String result;
+		private String name;
+		private String absences;
+		private String lastcheck;
+
+
 		public boolean sendUID(){
 		 String UID = getResult();
 		 if (UID !=null){
@@ -261,20 +283,88 @@ public class NFCReadActivity extends Activity {
 				// Create HttpClient to handle connection
 				HttpClient http_client = new DefaultHttpClient();
 				// Create HttpPost to connect to php file
-				HttpPost http_post = new HttpPost(URL + UID);
-				Log.d("posting UR L"+ http_post + " ", UID);
-				Log.d("posting URL", URL + UID);
+				HttpPost http_post;
+				
+
+				
+			
+
 				// Create response to read in information sent
-				http_client.execute(http_post); // Execute
+				
+				
 																		// script
 				// Store the sent information
 				
 
+	            http_post = new HttpPost(checkValue + UID);
+	            http_client.execute(http_post); 
+				Log.d("posting URL"+ http_post + " ", UID);
+				Log.d("posting URL", checkValue + UID);
+				
+	           
+				// Execute
 				// Handle exception
+				// Create response to read in information sent
+				HttpResponse response = http_client.execute(http_post); // Execute
+																		// script
+				// Store the sent information
+				HttpEntity entity = response.getEntity();
+				is = entity.getContent();
+
+				
+		
 			} catch (Exception e) {
 				Log.e("log_tag", "Error in http connection " + e.toString());
 				return false;
 			}
+			try {
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is, "iso-8859-1"), 8);
+				StringBuilder sb = new StringBuilder();
+				if (Looper.myLooper() == null) {
+					Looper.prepare();
+				}
+				String line = null;
+				while ((line = reader.readLine()) != null) {
+					sb.append(line + "\n");
+			}
+				is.close();
+				Context context = getApplicationContext();
+				Toast.makeText(context, sb, Toast.LENGTH_LONG);
+				result = sb.toString();
+				if (result.substring(0, 2).equals("[]")) {
+					return false;
+				}
+				if (result.contains("cannot connect")) {
+					Log.d("cannot connect to db", "connection error");
+					Looper.myLooper().quit();
+					cancel(true);
+					return false;
+				}
+			} catch (Exception e) {
+				Log.e("log_tag", "Error converting result " + e.toString());
+			}
+
+			String[] dbData = new String[DB_DATA_MAX_FIELDS];
+			try {
+				// Create JSON array to store results from DB
+				JSONArray userArray = new JSONArray(result);
+				JSONObject json_data = userArray.getJSONObject(0);
+				// Iterate through JSON array
+				for (int i = 0; i < DB_FIELDS.length; i++) {
+					// Store user field data in array to compare
+					dbData[i] = json_data.getString(DB_FIELDS[i]);
+				}
+				// Handle exception
+			} catch (JSONException e) {
+				Log.e("log_tag", "Error parsing data here " + e.toString());
+			}
+
+			Log.d("student", dbData[0] + " " + dbData[1] + " " + dbData[2]+ " " + dbData[3]);
+			// Check password stored in database against password entered
+			name = dbData[1] + " " + dbData[0];
+			absences = dbData[2];
+			lastcheck = dbData[3];
 			
 			return true;
 		 }
@@ -282,9 +372,11 @@ public class NFCReadActivity extends Activity {
 		}
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			Looper.prepare();
+			if (Looper.myLooper() == null) {
+				Looper.prepare();
+			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -299,9 +391,11 @@ public class NFCReadActivity extends Activity {
 @Override
     protected void onPostExecute(final Boolean success) {
         if (success) {
- 
+        	nameTextView.setText(name);
+	         currentAbsence.setText(absences);
+	          LastAttended.setText(lastcheck);
 
-        Toast.makeText(getApplicationContext(), "You have successful logged user for attendance", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "You have successfully logged student in attendance", Toast.LENGTH_LONG).show();
         }
 
     

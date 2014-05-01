@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="180dp"
-        android:layout_height="120dp"
-        android:layout_alignLeft="@+id/sp_nameTextView"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="42dp"
-        android:layout_marginLeft="54dp"
-        android:background="@drawable/bluebutton"
-        android:text="@string/CheckInButtonLabel" />
+    android:layout_height="match_parent"
+    android:configChanges="orientation"> 
 
     <TextView
         android:id="@+id/sp_nameTextView"
@@ -25,4 +15,30 @@
         android:text="@string/CheckAttendanceInstructionString"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 <!--  -->
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="44dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/bluebutton"
+        android:text="@string/CheckInButtonLabel" />
+
+    <Button
+        android:id="@+id/checkoutbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/submit"
+        android:layout_alignRight="@+id/sp_nameTextView"
+        android:layout_alignTop="@+id/submit"
+        android:layout_marginLeft="63dp"
+        android:layout_marginRight="40dp"
+        android:layout_toRightOf="@+id/submit"
+        android:background="@drawable/bluebutton"
+        android:padding="0dp"
+        android:text="@string/checkout" />
+
 </RelativeLayout>

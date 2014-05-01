@@ -3,6 +3,7 @@
     package="com.example.quori"
     android:versionCode="1"
     android:versionName="1.0" >
+    
 
     <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" >
         <tech-list>
@@ -48,13 +49,15 @@ android.nfc.tech.MifareUltralight
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
             android:name="com.example.quori.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:configChanges="orientation">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                
 
-                <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
 
 <intent-filter>
@@ -71,7 +74,8 @@ android.nfc.tech.MifareUltralight
         </activity>
         <activity
             android:name="com.example.quori.Login_Activity"
-            android:label="@string/title_activity_login_" >
+            android:label="@string/title_activity_login_" 
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -83,20 +87,22 @@ android.nfc.tech.MifareUltralight
         </activity>
         <activity
             android:name="com.example.quori.Student_registration"
-            android:label="@string/title_activity_student_registration" >
+            android:label="@string/title_activity_student_registration" 
+            android:configChanges="orientation">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.quori.NFCReadActivity" >
+        <activity android:name="com.example.quori.NFCReadActivity" 
+            android:configChanges="orientation">
         </activity>
         <activity android:name="com.example.quori.NdefReaderTask" >
+            
         </activity>
         <activity
             android:name="com.example.quori.NFCWriteActivity"
-            android:label="@string/title_activity_nfcwrite" >
+            android:label="@string/title_activity_nfcwrite" 
+            android:configChanges="orientation">
         </activity>
     </application>
 

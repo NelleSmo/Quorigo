@@ -16,7 +16,7 @@
         android:layout_centerVertical="true"
         android:ems="10"
         android:hint="@string/enter_in_e_mail_address"
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/registerbtn"

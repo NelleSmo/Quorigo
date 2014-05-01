@@ -97,11 +97,7 @@ public class MainActivity extends FragmentActivity {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
-		
-		Intent myIntent = new Intent(this, NFCReadActivity.class);
-		myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		startActivity(myIntent);
-		
+
 	}
 
 	@Override
@@ -149,7 +145,7 @@ public class MainActivity extends FragmentActivity {
 				
 				break;
 			case 2:
-				fragment = new StudentRegistrationFrament();
+				fragment = new StudentRegistrationFragment();
 				args.putInt(StudentRosterFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
 				

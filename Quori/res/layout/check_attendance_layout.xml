@@ -62,4 +62,15 @@
         android:padding="0dp"
         android:text="@string/CheckInButtonLabel" />
 <!--  -->
+
+    <Button
+        android:id="@+id/checkoutbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkinbtn"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bluebutton"
+        android:padding="0dp"
+        android:text="@string/checkout" />
+
 </RelativeLayout>

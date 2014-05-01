@@ -15,10 +15,11 @@ import android.widget.FrameLayout;
  * displays dummy text.
  */
 
-public class StudentRegistrationFrament extends Fragment {
+public class StudentRegistrationFragment extends Fragment {
 
 	
 	public static final String ARG_SECTION_NUMBER = "section_number";
+	private Intent myIntent;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,7 +29,18 @@ public class StudentRegistrationFrament extends Fragment {
 	
 		
 
+
+
 		return rootView;
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		myIntent = new Intent(getActivity(), NFCWriteActivity.class);
+		startActivity(myIntent);
 	}
 	
 	 

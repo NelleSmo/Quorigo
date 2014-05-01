@@ -3,9 +3,9 @@
 
     <string name="app_name">Quori</string>
     <string name="action_settings">Settings</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Student Check In/ Check Out</string>
+    <string name="title_section3">Roster</string><string name="title_section2">Register</string>
+    
     <string name="CheckAttendanceInstructionString">Please check in by scanning your registered NFC device.</string>
     <string name="CheckInButtonLabel">Check In</string>
     <string name="sballButtonText">Goodbye</string>
@@ -15,14 +15,16 @@
     <string name="lastAttendedLabel">Last Attended:</string>
     <string name="LastAttendedValue">3/15/2014</string>
     <string name="title_activity_login_">Login_Activity</string>
-    <string name="hello_world">Hello world!</string>
     <string name="pass">password</string>
     <string name="user">username</string>
-    <string name="submit">submit</string>
+    <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_student_registration">Student_registration</string>
     <string name="title_activity_nfcwrite">NFCWriteActivity</string>
     <string name="enter_in_e_mail_address">Enter in e-mail address</string>
     <string name="contentDesc">person\'s image</string>
+    <string name="checkout">Check Out</string>
+    <string name="blank">" "</string>
+    <string name="welcome">Welcome to Quorigo</string>
 
 </resources>
